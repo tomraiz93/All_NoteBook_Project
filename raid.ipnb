@@ -1,0 +1,77 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOK1ZbE+eZa3wMP1OuQgHyZ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/tomraiz93/aespa/blob/main/raid.ipnb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "je_NhQOIGc1l"
+      },
+      "outputs": [],
+      "source": [
+        "# raid.py\n",
+        "\n",
+        "class RAID0:\n",
+        "    def __init__(self, drives):\n",
+        "        self.drives = drives\n",
+        "\n",
+        "    def read_data(self, block_number):\n",
+        "        data = \"\"\n",
+        "        for drive in self.drives:\n",
+        "            # Giả sử mỗi ổ đĩa có hàm đọc dữ liệu từ block_number\n",
+        "            data += drive.read_block(block_number)\n",
+        "        return data\n",
+        "\n",
+        "    def write_data(self, block_number, data):\n",
+        "        # Giả sử mỗi ổ đĩa có hàm ghi dữ liệu vào block_number\n",
+        "        for i, drive in enumerate(self.drives):\n",
+        "            drive.write_block(block_number, data[i])\n",
+        "\n",
+        "class Drive:\n",
+        "    def __init__(self, name):\n",
+        "        self.name = name\n",
+        "        self.data = {}\n",
+        "\n",
+        "    def read_block(self, block_number):\n",
+        "        return self.data.get(block_number, \"\")\n",
+        "\n",
+        "    def write_block(self, block_number, data):\n",
+        "        self.data[block_number] = data"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "rXxgNzCRGmjN"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
